@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import Loading from '../Loading/Loading';
 import Container from '../layout/Container/Container';
 import Swal from 'sweetalert2';
+import FoodEditModal from './DetailsModal/FoodEditModal';
 
 const MyListing = () => {
   const { user, loading } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const MyListing = () => {
     if (user?.email) {
       fetchMyfoodItems();
     }
-  }, [user]);
+  }, [user, dataLoading]);
 
  const fetchMyfoodItems = async () => {
     try {
@@ -275,7 +276,7 @@ const MyListing = () => {
 
           {/* Modal component */}
           {showModal && (
-            <foodEditModal
+            <FoodEditModal
               food={selectedFoodItem}
               onClose={() => setShowModal(false)}
               onUpdate = {handleEditPost}

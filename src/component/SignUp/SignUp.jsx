@@ -51,7 +51,7 @@ function SignUp() {
         console.log(email, password, userProfile);
 
         //save profile info in the db
-        fetch('https://rommate-server.vercel.app/users', {
+        fetch('', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

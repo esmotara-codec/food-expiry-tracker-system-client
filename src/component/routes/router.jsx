@@ -4,6 +4,7 @@ import Home from "../Home/Home";
 import ErrorElement from "../ErrorPage/ErrorElement";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
+
 import PrivateRoute from "./PrivateRoutes";
 import MyListing from "../pages/MyListing";
 import PostDetails from "../pages/PostDetailsPage/PostDetails";
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch(''),
+                loader: () => fetch('http://localhost:5000/get-foodItems'),
                 element: <Home />
             },
             {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
             {
                 path: "my-listing",
                 element: <PrivateRoute> <MyListing /></PrivateRoute>,
-                loader: () => fetch('https://rommate-server.vercel.app/get-roommate'),
+                loader: () => fetch('http://localhost:5000/get-foodItems'),
             },
 
           

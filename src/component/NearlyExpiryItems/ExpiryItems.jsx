@@ -5,18 +5,18 @@ import Loading from '../Loading/Loading';
 import ExpiryItemsCard from './ExpiryItemsCard';
 
 
-const ExpiryItems = ({ roommatesData }) => {
+const ExpiryItems = ({foodItemsdata }) => {
 	const { loading } = use(AuthContext);
 	const [display, setDisplay] = useState([]);
 	const [viewAll, setViewAll] = useState(false);
 
-	console.log(roommatesData);
+	console.log(foodItemsdata);
 
 	useEffect(() => {
 
-	   if(!roommatesData) return ;
+	   if(!foodItemsdata) return ;
 
-	   const availablePosts = roommatesData?.filter(avail => avail.availability === 'available');
+	   const availablePosts = foodItemsdata?.filter(avail => avail.availability === 'available');
 
 		if (viewAll) {
 			setDisplay(availablePosts);
@@ -24,13 +24,13 @@ const ExpiryItems = ({ roommatesData }) => {
 			const limitedData =availablePosts?.slice(0, 6);
 			setDisplay(limitedData);
 		}
-	}, [roommatesData, viewAll]);
+	}, [foodItemsdata, viewAll]);
 
 	if (loading) {
 		return <Loading />
 	}
 
-	// if(!roommatesData){
+	// if(!foodItemsdata){
 	// 	return (
 	// 		<div className='bg-white'>
 	// 			<Container>

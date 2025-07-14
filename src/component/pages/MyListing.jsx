@@ -25,7 +25,7 @@ const MyListing = () => {
  const fetchMyfoodItems = async () => {
     try {
       setDataLoading(true);
-      const response = await fetch(`http://localhost:5000/foodItems/user/${user.email}`);
+      const response = await fetch(`http://localhost:5000//my-foodItems`);
       const data = await response.json();
       console.log(data);
       setFoodItems(data);
@@ -140,7 +140,7 @@ const MyListing = () => {
                   Create your first listing to start finding your items!
                 </p>
                 <button
-                  className="btn btn-primary bg-blue-600 hover:bg-blue-700 border-none px-8 py-3 rounded-lg text-white font-semibold"
+                  className="btn btn-primary bg-green-600 hover:bg-green-700 border-none px-8 py-3 rounded-lg text-white font-semibold"
                   onClick={() => navigate('/add-food')}
                 >
                   Create First Listing

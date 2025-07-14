@@ -1,10 +1,11 @@
 import { use } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router";
 
 const AddFoodItems = () => {
     const { user } = use(AuthContext);
-
+    const navigate = useNavigate();
     const addedDate = new Date().toISOString().split('T')[0];
     const handleAddFoodItems = (e) => {
         e.preventDefault();
@@ -38,6 +39,8 @@ const AddFoodItems = () => {
                         icon: "success",
                         draggable: true
                     });
+
+                    navigate('/my-listing');
                     //form reset
 
 

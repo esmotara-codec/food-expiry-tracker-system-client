@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import Container from '../layout/Container/Container';
 
 const ExpiryItemsCard = ({ post }) => {
-    const { title , _id, expiryDate, Category , image  , name, quantity} = post;
+    const { title , _id, expiryDate, Category , image } = post;
 	const formatName = (str) => {
 		if(!str) return '';
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -12,7 +12,7 @@ const ExpiryItemsCard = ({ post }) => {
         <Container>
 			<div className='bg-white border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 '>
 				<div className='p-5'>
-						<div className='flex flex-row gap-10'>
+						<div className='flex flex-row gap-5'>
 							<div>
 								<img src={image} 
 								alt="Food-image" 

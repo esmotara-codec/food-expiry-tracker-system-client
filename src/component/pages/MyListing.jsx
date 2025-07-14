@@ -3,43 +3,43 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Loading from '../Loading/Loading';
 import Container from '../layout/Container/Container';
-import RoommateEditModal from './DetailsModal/RoommateEditModal';
 import Swal from 'sweetalert2';
 
 const MyListing = () => {
   const { user, loading } = useContext(AuthContext);
-  const [roommates, setRoommates] = useState([]);
-  // const [selectedRoommate, setSelectedRoommate] = useState(null);
-  // const [dataLoading, setDataLoading] = useState(true);
+  const [foodItems, setFoodItems] = useState([]);
+  const [selectedFoodItem, setSelectedFoodItem] = useState(null);
+  const [dataLoading, setDataLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (user?.email) {
-  //     fetchMyRoommates();
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user?.email) {
+      fetchMyfoodItems();
+    }
+  }, [user]);
 
-//  const fetchMyRoommates = async () => {
-//     try {
-//       setDataLoading(true);
-//       const response = await fetch(`https://rommate-server.vercel.app/roommates/user/${user.email}`);
-//       const data = await response.json();
-//       console.log(data);
-//       setRoommates(data);
+ const fetchMyfoodItems = async () => {
+    try {
+      setDataLoading(true);
+      const response = await fetch(`http://localhost:5000/foodItems/user/${user.email}`);
+      const data = await response.json();
+      console.log(data);
+      setFoodItems(data);
 
-//     } catch (error) {
-//       console.error('Error fetching roommates:', error);
-//     } finally {
-//       setDataLoading(false);
-//     }
-//   }; 
-  // Update data  handler
+    } catch (error) {
+      console.error('Error fetching foodItems:', error);
+    } finally {
+      setDataLoading(false);
+    }
+  }; 
+  // Update data 
   const handleEditPost = (updatedData) => {
    
     
-    fetch(`https://rommate-server.vercel.app/update-roommates/${updatedData._id}`, {
+    fetch(`http://localhost:5000/update-foodItems/${updatedData._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -50,12 +50,12 @@ const MyListing = () => {
     .then(res => res.json())
     .then(data => {
       console.log('After Update the Data', data);
-      setRoommates(roommates.map(roommate => roommate._id === updatedData._id ? updatedData : roommate));
+      setFoodItems(foodItems.map(food => food._id === updatedData._id ? updatedData : food));
       if(data.modifiedCount){
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Roommate Updated Successfully",
+          title: "food Updated Successfully",
           showConfirmButton: true,
           confirmButtonText: "OK",
         });
@@ -75,40 +75,40 @@ const MyListing = () => {
   }
 
 
-  // const handleDelete = (_id) => {
-  //   console.log(_id);
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!"
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       // Start Deleting by Roommate ApI
-  //       fetch(`https://rommate-server.vercel.app/delete-roommates/${_id}`, {
-  //         method: 'DELETE'
-  //       })
-  //         .then(res => res.json())
-  //         .then(data => {
-  //           console.log('After Delete', data);
-  //           if (data.deletedCount) {
-  //             Swal.fire({
-  //               title: "Deleted!",
-  //               text: "Your file has been deleted.",
-  //               icon: "success"
-  //             });
-  //           }
+  const handleDelete = (_id) => {
+    console.log(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Start Deleting by food ApI
+        fetch(`http://localhost:5000/delete-foodItems/${_id}`, {
+          method: 'DELETE'
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log('After Delete', data);
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
 
-  //         })
+          })
 
 
-  //     }
-  //   });
+      }
+    });
 
-  // }
+  }
   if (loading) {
     return <Loading />;
   }
@@ -128,7 +128,7 @@ const MyListing = () => {
           </div>
 
           {/* Content Section */}
-          {roommates.length === 0 ? (
+          {foodItems.length === 0 ? (
             <div className="text-center py-16">
               <div className="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
                 <div className="text-6xl mb-6">🏠</div>
@@ -140,7 +140,7 @@ const MyListing = () => {
                 </p>
                 <button
                   className="btn btn-primary bg-blue-600 hover:bg-blue-700 border-none px-8 py-3 rounded-lg text-white font-semibold"
-                  onClick={() => navigate('/add-roommate')}
+                  onClick={() => navigate('/add-food')}
                 >
                   Create First Listing
                 </button>
@@ -151,11 +151,122 @@ const MyListing = () => {
               {/* Table Header */}
               <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 md:px-6 py-4">
                 <h2 className="text-xl font-semibold text-white">
-                  Your have ({roommates.length}) post
+                  Hey {user.displayName} You, have ({foodItems.length}) food ttem Listed in the Table below : 
                 </h2>
               </div>
 
-              {/* Card Items */}
+               {/* Table Content */}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                        #
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                      Food Title
+                      </th>
+                     
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                        Quantity
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                        Added date
+                      </th>
+                      <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                        Expiry date
+                      </th>
+                       <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                       Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {foodItems.map((food, index) => (
+                      <tr key={food._id} className="hover:bg-gray-50 transition-colors duration-200">
+                        <td className="px-6 py-6 whitespace-nowrap">
+                          <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full">
+                            <span className="text-sm font-medium text-blue-600">
+                              {index + 1}
+                            </span>
+                          </div>
+                        </td>
+
+                        <td className="px-6 py-6 whitespace-nowrap">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex-shrink-0">
+                              {/* <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                              
+                            
+                                <span className="text-white font-semibold text-lg">
+                                  {food.title ? food.title.charAt(0).toUpperCase() : 'None'}
+                                </span>
+                              </div> */}
+
+                              <img src={food.image} 
+                              alt="Food-Item" 
+                              className='w-12 h-12 object-cover rounded-full'/>
+
+                            </div>
+                            <div>
+                              <div className="text-base font-semibold text-gray-900">
+                                {food.title || 'No Name'}
+                              </div>
+                              <div className="text-sm text-gray-500">
+                                {food.Category ? `${food.Category} ` : 'Not specified'}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td className="px-6 py-6 whitespace-nowrap">
+                          <div className="space-y-1">
+                            <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                             {food.quantity || 'Location not specified'}
+                            </div>
+                          </div>
+                        </td>
+
+                        <td className="px-6 py-6 whitespace-nowrap">
+                          <div className="text-base font-medium text-gray-900">
+                            {food.dateAdded || 'N/A'}
+                          </div>
+                        </td>
+
+                        <td className="px-6 py-6 whitespace-nowrap">
+                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${food.expiryDate === '3-6months'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-red-100 text-red-800'
+                            }`}>
+                            {food.expiryDate || 'Expiry date is not specified'}
+                          </span>
+                        </td>
+
+                        <td className="px-6 py-6 whitespace-nowrap">
+                          <div className="flex flex-col sm:flex-row gap-2">
+                            <button
+                              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
+                              onClick={() => {
+                                setSelectedFoodItem(food);
+                                setShowModal(true);
+                              }}
+                            >
+                              Update
+                            </button>
+                            <button
+                              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+                              onClick={() => handleDelete(food._id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
               
 
 
@@ -164,8 +275,8 @@ const MyListing = () => {
 
           {/* Modal component */}
           {showModal && (
-            <RoommateEditModal
-              roommate={selectedRoommate}
+            <foodEditModal
+              food={selectedFoodItem}
               onClose={() => setShowModal(false)}
               onUpdate = {handleEditPost}
             />

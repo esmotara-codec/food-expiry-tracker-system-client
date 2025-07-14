@@ -30,18 +30,6 @@ const ExpiryItems = ({foodItemsdata }) => {
 		return <Loading />
 	}
 
-	// if(!foodItemsdata){
-	// 	return (
-	// 		<div className='bg-white'>
-	// 			<Container>
-	// 				<div className='text-center mt-10'>
-	// 					<p className='text-green-700'>Loading Nearly expired Food....</p>
-	// 				</div>
-	// 			</Container>
-
-	// 		</div>
-	// 	)
-	// }
 
 	return (
 		<div className=' bg-white '>
@@ -61,7 +49,7 @@ const ExpiryItems = ({foodItemsdata }) => {
 							</div>
 						) :
 							(
-								<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-2 p-5'>
+								<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-2 p-2'>
 									{
 										display?.map((post) => (
 											<ExpiryItemsCard key={post._id} post={post}></ExpiryItemsCard>

@@ -27,7 +27,7 @@ const navigationData = [
     {
         id: 4,
         name: "My Items",
-        path: "/c",
+        path: "/my-listing",
     },
 
 

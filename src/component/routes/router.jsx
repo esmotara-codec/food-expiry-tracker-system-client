@@ -40,14 +40,14 @@ const router = createBrowserRouter([
             {
                 path: "my-listing",
                 element: <PrivateRoute> <MyListing /></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/get-foodItems'),
+              
             },
 
           
             {
 				path: '/postDetails/:id',
 				element:<PrivateRoute><PostDetails /></PrivateRoute> ,
-				loader: ({params}) => fetch(`https://rommate-server.vercel.app/single-roommates/${params._id}`),
+				loader: ({params}) => fetch(`http://localhost:5000/single-foodItems/${params._id}`),
 			},
 
 

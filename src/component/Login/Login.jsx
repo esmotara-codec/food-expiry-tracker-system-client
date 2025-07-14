@@ -45,8 +45,7 @@ const Login = () => {
     signInWithGoogle(provider)
       .then(result => {
         console.log('google sign in : ', result.user);
-        const user = result.user;
-
+       
         const userProfile = {
           name: result.user.displayName,
           email: result.user.email,
@@ -56,7 +55,7 @@ const Login = () => {
         }
 
         //save profile info in the db
-        fetch('https://rommate-server.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

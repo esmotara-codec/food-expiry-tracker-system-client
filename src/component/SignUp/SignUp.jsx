@@ -51,7 +51,7 @@ function SignUp() {
         console.log(email, password, userProfile);
 
         //save profile info in the db
-        fetch('', {
+        fetch('http://localhost:5000/users', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

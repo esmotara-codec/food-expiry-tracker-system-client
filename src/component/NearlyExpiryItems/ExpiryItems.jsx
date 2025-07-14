@@ -16,12 +16,12 @@ const ExpiryItems = ({foodItemsdata }) => {
 
 	   if(!foodItemsdata) return ;
 
-	   const availablePosts = foodItemsdata?.filter(avail => avail.availability === 'available');
+	   const expiryDates = foodItemsdata?.filter(expiry => expiry.expiryDate === '1-2months');
 
 		if (viewAll) {
-			setDisplay(availablePosts);
+			setDisplay(expiryDates);
 		} else {
-			const limitedData =availablePosts?.slice(0, 6);
+			const limitedData =expiryDates?.slice(0, 6);
 			setDisplay(limitedData);
 		}
 	}, [foodItemsdata, viewAll]);
@@ -61,7 +61,7 @@ const ExpiryItems = ({foodItemsdata }) => {
 							</div>
 						) :
 							(
-								<div className='grid grid-cols-1 md:grid-cols-2 gap-1  '>
+								<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-2 p-5'>
 									{
 										display?.map((post) => (
 											<ExpiryItemsCard key={post._id} post={post}></ExpiryItemsCard>

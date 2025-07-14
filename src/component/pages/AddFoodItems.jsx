@@ -11,21 +11,21 @@ const AddFoodItems = () => {
         const form = e.target;
         const formData = new FormData(form);
         // console.log(formData.entries());
-        const roommateData = Object.fromEntries(formData.entries());
-        console.log(roommateData);
+        const newFoodItems = Object.fromEntries(formData.entries());
+        console.log(newFoodItems);
 
-        roommateData.name = user?.displayName || "";
-        roommateData.email = user?.email || "";
-        roommateData.dateAdded = addedDate;
+        newFoodItems.name = user?.displayName || "";
+        newFoodItems.email = user?.email || "";
+        newFoodItems.dateAdded = addedDate;
 
 
         //send data to the db 
-        fetch('https://rommate-server.vercel.app/roommates', {
+        fetch('http://localhost:5000/create-foodItems', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(roommateData)
+            body: JSON.stringify(newFoodItems)
 
         })
             .then(res => res.json())
@@ -52,22 +52,27 @@ const AddFoodItems = () => {
                     <p className="text-xs md:text-lg mt-2 text-gray-500">Enter your food items to start tracking their expiry dates. Stay organized, get reminders, and reduce waste with smart food management.</p>
 
                 </div>
-                <span className="p-8 text-red-500">* Required Field</span>
+                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="p-8">
+                       <div className="flex items-center gap-2 mb-8">
+                     <span className=" text-red-500">*</span>
+                     <span className=" text-gray-600">Required Field</span>
+                       </div>
 
-                <form action="" onSubmit={handleAddFoodItems}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-5">
+                <form onSubmit={handleAddFoodItems}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
                         {/* Title where u looking for roommate */}
-                        <fieldset className="fieldset bg-white border-gray-400 rounded-box  border p-4">
+                        <div className="space-y-3">
                             <label className="label text-gray-700">Title *</label>
                             <input type="text"
                                 name='title'
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="Enter food title" />
 
-                        </fieldset>
+                        </div>
 
                         {/* Your Email  read only */}
-                        <fieldset className="fieldset bg-white border-gray-400 rounded-box  border p-4">
+                        <div className="space-y-3">
                             <label className="label text-gray-700">Your Email(Read only)</label>
                             <input type="text"
                                 name='email'
@@ -75,28 +80,28 @@ const AddFoodItems = () => {
                                 value={user?.email}
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="Your Email" />
-                        </fieldset>
+                        </div>
 
                         {/* Enter Category  */}
-                        <fieldset className="fieldset bg-white border-gray-400 rounded-box  border p-4">
+                        <div className="space-y-3">
                             <label className="label text-gray-700">Category *</label>
                             <input type="text"
                                 name='Category'
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="Enter Category" />
-                        </fieldset>
+                        </div>
 
                         {/* Enter Quantity */}
-                        <fieldset className="fieldset bg-white border-gray-400 rounded-box  border p-4">
+                        <div className="space-y-3">
                             <label className="label text-gray-700">Quantity * </label>
                             <input type="text"
                                 name='quantity'
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
-                                placeholder="Enter quantity" />
-                        </fieldset>
+                                placeholder="e.g., 2 bottles, 1 kg " />
+                        </div>
 
                         {/* Enter Quantity */}
-                        <fieldset className="fieldset bg-white border-gray-400 rounded-box  border p-4">
+                        <div className="space-y-3">
                             <label className="label text-gray-700">Added Date(Read only)</label>
                             <input
                                 type="text"
@@ -104,12 +109,12 @@ const AddFoodItems = () => {
                                 value={addedDate}
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="Enter quantity" />
-                        </fieldset>
+                        </div>
 
 
 
                         {/* select  Expiry Date  */}
-                        <fieldset className="fieldset bg-white border-gray-400 rounded-box  border p-4">
+                        <div className="space-y-3">
                             <label className="label text-gray-700"> Expiry Date *</label>
                             <select
                                 name="expiryDate"
@@ -121,55 +126,50 @@ const AddFoodItems = () => {
                                 <option value="1-1.5years">1-1.5 years</option>
                                 <option value="2years">2 years</option>
                             </select>
-                        </fieldset>
+                        </div>
 
 
                         {/*  Enter Food Image  */}
-                        <fieldset className="fieldset bg-white col-span-2 mx-44 border-gray-400 rounded-box border p-4">
+                        <div className="space-y-3">
                             <label className="label text-gray-700 mb-2">Upload Image *</label>
 
-                            <div className="relative w-full">
+                            <div className="w-full">
                                 <input
-                                    type="file"
+                                    type="text"
                                     name="image"
-                                    accept="image/*"
+                                    placeholder="Enter image URL"
                                     required
-                                    className="opacity-0 absolute inset-0 z-50 cursor-pointer"
+                                    className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
+                                   
                                 />
-                                <div className="flex items-center justify-between px-4 py-2 border border-gray-400 bg-white text-black rounded-md">
-                                    <span className="text-gray-500 text-sm">Choose an image...</span>
-                                    <button
-                                        type="button"
-                                        className="bg-[#24ab63] text-white px-4 py-1 rounded-md text-sm"
-                                    >
-                                        Browse
-                                    </button>
-                                </div>
+                                   
                             </div>
 
                             <small className="text-sm text-gray-500 mt-2 block">
                                 Supported formats: JPG, PNG. Max size: 2MB.
                             </small>
-                        </fieldset>
+                        </div>
 
                     </div>
 
                     {/*Add description   */}
-                    <div className="p-5">
-                        <fieldset className="fieldset bg-white border-gray-400 rounded-box  border p-3">
+                    <div className="py-5">
+                        <div className="space-y-3">
                             <label className="label text-gray-700">Description *</label>
                             <textarea name="description"
                                 className="textarea w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="E.g. Fresh homemade cookies, stored in airtight container. Best consumed within a week.">
 
                             </textarea>
-                        </fieldset>
+                        </div>
                     </div>
 
                     <div className="p-5 text-center">
                         <button type="submit" className=" btn w-1/6 bg-[#24ab63] border border-[#24ab63]/20 text-white text-center items-center md:text-xl font-semibold  px-5 md:px-10 py-2 rounded-md shadow-none ">Submit</button>
                     </div>
                 </form>
+                    </div>
+                </div>
 
 
 

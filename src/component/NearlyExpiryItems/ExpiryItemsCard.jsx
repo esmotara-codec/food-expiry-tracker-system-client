@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import Container from '../layout/Container/Container';
 
 const ExpiryItemsCard = ({ post }) => {
-    const { name , _id, availability, location, roomType, title , rent  } = post;
+    const { title , _id, expiryDate, Category , image  , name, quantity} = post;
 	const formatName = (str) => {
 		if(!str) return '';
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -10,36 +10,37 @@ const ExpiryItemsCard = ({ post }) => {
 
     return (
         <Container>
-			<div className='text-centermax-w-md border border-gray-300 rounded-4xl md:p-6 p-3'>
-			<div className='flex flex-row gap-5 '>
-				<div className='w-full'>
-					<div className='flex flex-col gap-2'>
-						<div className='flex flex-row gap-2 mb-2'>
-							<button className='bg-[#09982F]/10 text-green-600 px-2 md:px-4 md:py-1 rounded-3xl text-[14px] md:text-sm  '>
-								{availability}
-							</button>
-							<button className='bg-[#176AE5]/10 text-blue-600 px-3 py-1 rounded-full text-[10px] md:text-sm '>
-								{roomType}
-							</button>
-						</div>
-						<div className='text-gray-500 mb-3'>
-							<h4 className='font-bold text-gray-800'>Name: {formatName(name)}</h4>
-							<p className='text-[12px] md:text-[16px]'>Title: <span>{title}</span></p>
-							<p className='text-[12px] md:text-[16px]'>Rent: <span>{rent}</span></p>
-							<span>Location: {location}</span>
-
-						</div>
-
-						<Link to={`/postDetails/${_id}`}>
-							<button className='btn bg-white border w-full  border-[#176AE5]/20 text-center text-[#176AE5] md:px-10 md:py-2 rounded-full shadow-none '>
-								See more
+			<div className='bg-white border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 '>
+				<div className='p-5'>
+						<div className='flex flex-row gap-10'>
+							<div>
+								<img src={image} 
+								alt="Food-image" 
+								className='w-28 h-40 md:h-32 object-cover rounded-2xl'
+								/>
+							</div>
+							<div className='flex flex-col flex-grow gap-4'>
+								<div>
+									<h2 className='text-lg md:text-xl font-semibold text-gray-700 '>{title}</h2>
+								<p className='text-gray-700 text-sm md:text-[14px] font-semibold'>Category : {formatName(Category)}</p>
+								<p className='text-gray-700 text-sm md:text-[14px] font-semibold'>Expiry dates : {formatName(expiryDate)}</p>
+								</div>
+								<Link to={`/postDetails/${_id}`}>
+							<button className='btn bg-white w-full border  border-[#24ab63]/20 text-center text-[#24ab63] md:px-5 md:py-2 rounded-full shadow-none '>
+								View Details
 							</button>
 						</Link>
+							</div>
+
+							
+
+						</div>
+						
 					</div>
 					
-				</div>
 			</div>
-		</div>
+			
+		
 		</Container>
     );
 };

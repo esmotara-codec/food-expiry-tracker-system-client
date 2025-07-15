@@ -4,7 +4,7 @@ import { ArrowLeft, MapPin, Calendar, User, Heart, Phone, Mail, Home, DollarSign
 import { AuthContext } from '../../context/AuthContext';
 import Loading from '../../Loading/Loading';
 
-const PostDetails = () => {
+const DetailsPage = () => {
     const { loading } = use(AuthContext);
     const detailsData = useLoaderData();
     const [isLiked, setIsLiked] = useState(false);
@@ -186,4 +186,4 @@ const PostDetails = () => {
     );
 };
 
-export default PostDetails;
+export default DetailsPage;

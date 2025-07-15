@@ -3,10 +3,31 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
 
+
+const expiryMap = {
+    '1 Week': 7,
+    '2 Weeks': 14,
+    '1 Month': 30,
+  '1-2months': 60,
+  '3-6months': 120,
+  '6-12months': 240,
+  '1-1.5years': 365,
+  '2years': 730
+};
+
 const AddFoodItems = () => {
     const { user } = use(AuthContext);
     const navigate = useNavigate();
     const addedDate = new Date().toISOString().split('T')[0];
+
+    const getActualExpiryDate = (dateAdded, expiryRange) => {
+        const daysToAdd = expiryMap[expiryRange] || 0;
+        const addedDate = new Date(dateAdded);
+        addedDate.setDate(addedDate.getDate() + daysToAdd);
+        return addedDate;
+    }
+
+
     const handleAddFoodItems = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -14,6 +35,12 @@ const AddFoodItems = () => {
         // console.log(formData.entries());
         const newFoodItems = Object.fromEntries(formData.entries());
         console.log(newFoodItems);
+
+        const today = new Date().toISOString();
+        newFoodItems.dateAdded =today;
+        newFoodItems.actualExpiryDate= getActualExpiryDate(today, newFoodItems.expiryDate).toISOString();
+
+
 
         newFoodItems.name = user?.displayName || "";
         newFoodItems.email = user?.email || "";
@@ -123,6 +150,9 @@ const AddFoodItems = () => {
                                 name="expiryDate"
                                 className="select w-full px-4 py-2 border border-gray-400 bg-white text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30">
                                 <option value="">Select Expiry Date</option>
+                                <option value="1 Week">1-2 months</option>
+                                <option value="2 week">1-2 months</option>
+                                <option value="1month">1 month</option>
                                 <option value="1-2months">1-2 months</option>
                                 <option value="3-6months">3-6 months</option>
                                 <option value="6-12months">6-12months</option>

@@ -168,7 +168,7 @@ const MyListing = () => {
                         #
                       </th>
                       <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                      Food Title
+                      Food Detail
                       </th>
                      
                       <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">

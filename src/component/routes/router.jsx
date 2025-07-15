@@ -4,11 +4,10 @@ import Home from "../Home/Home";
 import ErrorElement from "../ErrorPage/ErrorElement";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
-
 import PrivateRoute from "./PrivateRoutes";
 import MyListing from "../pages/MyListing";
-import PostDetails from "../pages/PostDetailsPage/PostDetails";
 import AddFoodItems from "../pages/AddFoodItems";
+import DetailsPage from "../pages/DetailsPage/DetailsPage";
 
 
 
@@ -46,7 +45,7 @@ const router = createBrowserRouter([
           
             {
 				path: '/foodDetails/:id',
-				element:<PrivateRoute><PostDetails /></PrivateRoute> ,
+				element:<PrivateRoute><DetailsPage /></PrivateRoute> ,
 				loader: ({params}) => fetch(`http://localhost:5000/single-foodItems/${params._id}`),
 			},
 

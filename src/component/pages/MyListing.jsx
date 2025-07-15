@@ -32,7 +32,6 @@ const MyListing = () => {
         }
       });
       const data = response.data; 
-      console.log("Food Items", data);
       setFoodItems(data);
 
     } catch (error) {
@@ -120,10 +119,10 @@ const MyListing = () => {
   return (
     <div className="h-screen bg-gradient-to-br from-slate-50 to-blue-50 ">
       <Container>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
           {/* Header Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          <div className="text-center mb-12 pt-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 ">
               My  Listings
             </h1>
             <p className="text-gray-600 text-sm md:text-lg">
@@ -223,7 +222,7 @@ const MyListing = () => {
                           </div>
                         </td>
 
-                        <td className="px-6 py-6 whitespace-nowrap">
+                        <td className="px-6 py-6 whitespace-nowrap text-center">
                           <div className="space-y-1">
                             <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
                              {food.quantity || 'Location not specified'}

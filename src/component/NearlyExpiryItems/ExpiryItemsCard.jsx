@@ -11,7 +11,7 @@ const expiryMap = {
 	'3-6months': 120,
 	'6-12months': 240,
 	'1-1.5years': 365,
-	'2years': 730,
+	 '2years': 730,
 };
 
 // Convert to actual expiry date
@@ -42,7 +42,7 @@ const ExpiryItemsCard = ({ post }) => {
 	const daysLeft = useMemo(() => {
 		const expiry = new Date(getActualExpiryDate(dateAdded, expiryDate));
 		const today = new Date();
-		const diff = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24)); // in days
+		const diff = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24)); //
 		return diff;
 	}, [dateAdded, expiryDate]);
 

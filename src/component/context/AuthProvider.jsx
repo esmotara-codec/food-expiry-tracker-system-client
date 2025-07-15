@@ -6,6 +6,7 @@ import { auth } from "../../firebase/firebase.init";
 
 
 
+
 const AuthProvider = ({ children }) => {
     const [user , setUser ] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -37,6 +38,15 @@ const AuthProvider = ({ children }) => {
             // console.log('Current User inside useEffect on auth state change ', currentUser);
             setUser(currentUser);
             setLoading(false);
+            // if(currentUser?.email){
+            //     const userData = {email: currentUser.email};
+            //     axios.post('http://localhost:5000/jwt', userData)
+            //     .then(res =>{
+            //         console.log(res.data)
+            //     })
+            //     .catch(error => console.log(error));                
+
+            // }
         })
         return () => {
             unSubscribe();

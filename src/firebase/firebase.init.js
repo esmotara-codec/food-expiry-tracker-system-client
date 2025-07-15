@@ -5,20 +5,19 @@ import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-
-//danger
 // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyByfbQjjiPgAESPRsRnaaGebUWaq02P4kA",
-  authDomain: "roommate-auth-intregation.firebaseapp.com",
-  projectId: "roommate-auth-intregation",
-  storageBucket: "roommate-auth-intregation.firebasestorage.app",
-  messagingSenderId: "254765588959",
-  appId: "1:254765588959:web:273eb05717cb9a375c246a"
+  apiKey: import.meta.env.apiKey,
+  authDomain: import.meta.env.authDomain ,
+  projectId: import.meta.env.projectId,
+  storageBucket: import.meta.env.storageBucket,
+  messagingSenderId: import.meta.env.messagingSenderId,
+  appId: import.meta.env.appId,
+  measurementId: import.meta.env.measurementId
 };
 
+console.log("firebase env from ", firebaseConfig);
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);

@@ -5,6 +5,7 @@ import Loading from '../Loading/Loading';
 import Container from '../layout/Container/Container';
 import Swal from 'sweetalert2';
 import FoodEditModal from './DetailsModal/FoodEditModal';
+import axios from 'axios';
 
 const MyListing = () => {
   const { user, loading } = useContext(AuthContext);
@@ -13,20 +14,27 @@ const MyListing = () => {
   const [dataLoading, setDataLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
+  console.log(user);
+
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.email) {
-      fetchMyfoodItems();
+      fetchMyfoodItems(user.accessToken);
     }
   }, [user, dataLoading]);
 
- const fetchMyfoodItems = async () => {
+ const fetchMyfoodItems = async (accessToken) => {
+     
     try {
       setDataLoading(true);
-      const response = await fetch(`http://localhost:5000//my-foodItems`);
-      const data = await response.json();
+      const response = await axios.get(`http://localhost:5000/my-foodItems` , {
+        headers : {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      const data = response.data; 
       console.log(data);
       setFoodItems(data);
 

@@ -64,7 +64,7 @@ const Headers = () => {
                         }
                         {/* Mobile Responsive */}
                         <ul className={`lg:hidden  absolute z-10  py-2 
-                     ${menuOpen ? 'top-19 md:top-23 left-0' : '-top-80 mt-0'} bg-[#2595be] text-white font-semibold `}>
+                     ${menuOpen ? 'top-19 md:top-23 left-0' : '-top-80 mt-0'} bg-[#24ab63] text-white font-semibold `}>
 
                             <div className=''>
                                 {links}

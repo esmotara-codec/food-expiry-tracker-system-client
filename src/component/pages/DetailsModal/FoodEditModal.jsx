@@ -13,9 +13,9 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     console.log("Update button clicked");
-    e.preventDefault();
+   
     onUpdate(formData); 
     
   };
@@ -44,6 +44,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                             <label className="label text-gray-700">Title *</label>
                             <input type="text"
                                 name='title'
+                                defaultValue={food.title}
                                 onChange={handleChange}
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="Enter food title" />
@@ -66,6 +67,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                             <label className="label text-gray-700">Category *</label>
                             <input type="text"
                                 name='Category'
+                                defaultValue={food.Category}
                                  onChange={handleChange}
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="Enter Category" />
@@ -76,6 +78,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                             <label className="label text-gray-700">Quantity * </label>
                             <input type="text"
                                 name='quantity'
+                                defaultValue={food.quantity}
                                 onChange={handleChange}
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="e.g., 2 bottles, 1 kg " />
@@ -86,10 +89,10 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                             <label className="label text-gray-700">Added Date(Read only)</label>
                             <input
                                 type="text"
-                                name="dateAdded"
-                                value={formData.addedDate}
+                                name="dateAdded"                               
+                                value={formData.dateAdded}
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
-                                placeholder="Enter quantity" />
+                                readOnly />
                         </div>
 
 
@@ -99,6 +102,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                             <label className="label text-gray-700"> Expiry Date *</label>
                             <select
                                 name="expiryDate"
+                                defaultValue={food.expiryDate}
                                 className="select w-full px-4 py-2 border border-gray-400 bg-white text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30">
                                 <option value="">Select Expiry Date</option>
                                 <option value="1-2months">1-2 months</option>
@@ -118,6 +122,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                                 <input
                                     type="text"
                                     name="image"
+                                    defaultValue={food.image}
                                     placeholder="Enter image URL"
                                     required
                                     className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
@@ -139,6 +144,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                             <label className="label text-gray-700">Description *</label>
                             <textarea 
                             name="description"
+                            defaultValue={food.description}
                              onChange={handleChange}
                                 className="textarea w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                 placeholder="E.g. Fresh homemade cookies, stored in airtight container. Best consumed within a week.">

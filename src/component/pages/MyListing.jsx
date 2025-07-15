@@ -6,43 +6,38 @@ import Container from '../layout/Container/Container';
 import Swal from 'sweetalert2';
 import FoodEditModal from './DetailsModal/FoodEditModal';
 import axios from 'axios';
+import { getAuth } from 'firebase/auth';
 
 const MyListing = () => {
   const { user, loading } = useContext(AuthContext);
   const [foodItems, setFoodItems] = useState([]);
-  const [selectedFoodItem, setSelectedFoodItem] = useState(null);
-  const [dataLoading, setDataLoading] = useState(true);
+  const [selectedFoodItem, setSelectedFoodItem] = useState(null); 
   const [showModal, setShowModal] = useState(false);
-
-  console.log(user);
-
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.email) {
-      fetchMyfoodItems(user.accessToken);
+      fetchMyfoodItems();
     }
-  }, [user, dataLoading]);
+  }, [user]);
 
- const fetchMyfoodItems = async (accessToken) => {
+ const fetchMyfoodItems = async () => {
      
     try {
-      setDataLoading(true);
+      const token = await getAuth().currentUser.getIdToken(true); 
       const response = await axios.get(`http://localhost:5000/my-foodItems` , {
         headers : {
-          Authorization: `Bearer ${accessToken}`
+          Authorization: `Bearer ${token}`
         }
       });
       const data = response.data; 
-      console.log(data);
+      console.log("Food Items", data);
       setFoodItems(data);
 
     } catch (error) {
       console.error('Error fetching foodItems:', error);
-    } finally {
-      setDataLoading(false);
-    }
+    } 
   }; 
   // Update data 
   const handleEditPost = (updatedData) => {
@@ -123,7 +118,7 @@ const MyListing = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8">
+    <div className="h-screen bg-gradient-to-br from-slate-50 to-blue-50 ">
       <Container>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
@@ -160,7 +155,7 @@ const MyListing = () => {
               {/* Table Header */}
               <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 md:px-6 py-4">
                 <h2 className="text-xl font-semibold text-white">
-                  Hey {user.displayName} You, have ({foodItems.length}) food ttem Listed in the Table below : 
+                  Hey {user.displayName}, You have ({foodItems.length}) food item Listed in the Table below : 
                 </h2>
               </div>
 

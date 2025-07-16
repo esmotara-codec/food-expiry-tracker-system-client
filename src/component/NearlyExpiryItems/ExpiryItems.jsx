@@ -16,7 +16,7 @@ const ExpiryItems = ({foodItemsdata }) => {
 
 	   if(!foodItemsdata) return ;
 
-	   const expiryDates = foodItemsdata?.filter(expiry => expiry.expiryDate === '2 weeks');
+	   const expiryDates = foodItemsdata?.filter(expiry => expiry.expiryDate === '2week' || expiry.expiryDate ===  '1month');
 
 		if (viewAll) {
 			setDisplay(expiryDates);

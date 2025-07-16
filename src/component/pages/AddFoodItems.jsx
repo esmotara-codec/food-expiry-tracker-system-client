@@ -5,9 +5,9 @@ import { useNavigate } from "react-router";
 
 
 const expiryMap = {
-    '1 Week': 7,
-    '2 Weeks': 14,
-    '1 Month': 30,
+    '1week': 7,
+    '2week': 14,
+    '1month': 30,
   '1-2months': 60,
   '3-6months': 120,
   '6-12months': 240,
@@ -150,8 +150,8 @@ const AddFoodItems = () => {
                                 name="expiryDate"
                                 className="select w-full px-4 py-2 border border-gray-400 bg-white text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30">
                                 <option value="">Select Expiry Date</option>
-                                <option value="1 Week">1-2 months</option>
-                                <option value="2 week">1-2 months</option>
+                                <option value="1week">1 week</option>
+                                <option value="2week">2 week</option>
                                 <option value="1month">1 month</option>
                                 <option value="1-2months">1-2 months</option>
                                 <option value="3-6months">3-6 months</option>

@@ -4,9 +4,9 @@ import { useMemo } from 'react';
 
 // Mapping range strings to number of days
 const expiryMap = {
-	 '1 Week': 7,
-    '2 Weeks': 14,
-    '1 Month': 30,
+	 '1week': 7,
+    '2week': 14,
+    '1month': 30,
 	'1-2months': 60,
 	'3-6months': 120,
 	'6-12months': 240,

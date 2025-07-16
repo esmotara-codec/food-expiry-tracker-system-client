@@ -154,7 +154,7 @@ const MyListing = () => {
               {/* Table Header */}
               <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 md:px-6 py-4">
                 <h2 className="text-xl font-semibold text-white">
-                  Hey {user.displayName}, You have ({foodItems.length}) food item Listed in the Table below : 
+                  Hey {user.displayName}, You have ({foodItems.length}) food item Listed in the table below : 
                 </h2>
               </div>
 

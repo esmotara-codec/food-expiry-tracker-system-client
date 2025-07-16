@@ -1,187 +1,146 @@
-import { use, useEffect, useState } from 'react';
-import { Link, useLoaderData, useParams } from 'react-router';
-import { ArrowLeft, MapPin, Calendar, User, Heart, Phone, Mail, Home, DollarSign, Clock, PawPrint } from 'lucide-react';
-import { AuthContext } from '../../context/AuthContext';
-import Loading from '../../Loading/Loading';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import Container from "../../layout/Container/Container";
+import { AlertCircle, ArrowUpWideNarrow, BrickWall, Calendar, Clock, MessageCircleCode, Package, Plus, ShieldAlert, UserRoundPen } from "lucide-react";
 
 const DetailsPage = () => {
-    const { loading } = use(AuthContext);
-    const detailsData = useLoaderData();
-    const [isLiked, setIsLiked] = useState(false);
-    const { _id } = useParams();
-    
+     const {id} =useParams();
+     const [foodItem, setFoodItem] = useState();
+     const [loading, setLoading] =useState(true);
+     console.log(id);
 
-    const [viewPostDetail , setViewPostDetail] =useState({});
+     const today = new Date().toISOString().split('T')[0];
 
-    useEffect(() => {
-        const singlePost = detailsData?.find((detail) => detail._id === parseInt(_id) );
-        setViewPostDetail(singlePost)
+ useEffect(() => {
+      fetch(`http://localhost:5000/single-foodItems/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFoodItem(data);
+        setLoading(false)
+                console.log(data)
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  }, [id]);
 
-    }, [detailsData , _id]);
-
-    const {name , gender ,age,  availability, location, roomType, title , rent , leaseDuration} = viewPostDetail;
-
-    const formatRoomType = (type) => {
-        const types = {
-            'single': 'Single Room',
-            'double': 'Double Room',
-            'master': 'Master Bedroom'
-        };
-        return types[type] || type;
-    };
-
-    const formatAvailability = (availability) => {
-        return availability === 'available' ? 'Available' : 'Not Available';
-    };
-
-    const formatPetFriendly = (petFriendly) => {
-        const pets = {
-            'cat': 'I have a cat',
-            'dog': 'I have a dog',
-            'both': 'I have both',
-            'pet-friendly': 'Pet friendly',
-            'none': 'No pets'
-        };
-        return pets[petFriendly] || petFriendly;
-    };
-
-    const handleLike = () => {
-        setIsLiked(!isLiked);
-    };
-
-    if (loading) {
-        return <Loading />;
+  if (loading) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading product details...</p>
+                </div>
+            </div>
+        );
+    }
+   if (!foodItem) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-center">
+                    <AlertCircle className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Product Not Found</h2>
+                    <p className="text-gray-600">The product you're looking for doesn't exist.</p>
+                </div>
+            </div>
+        );
     }
 
+    
+
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <div className="bg-white shadow-sm border-b">
-                <div className="max-w-6xl mx-auto px-4 py-4">
-                   <Link to="/">
-                    <button 
-                       className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4"
-                    >
-                        <ArrowLeft className="w-5 h-5" />
-                        Back to listings
-                    </button>
+        <div className="bg-gray-200 text-gray-800 min-h-screen ">
+          <Container>
+            <div className="border border-[#24ab63] text-center py-2 ">
+             <div className="p-4 md:p-10 bg-white  ">
+                 <h1 className="font-bold text-xl md:text-3xl">Details Page</h1> 
+                 <p className="text-gray-500">Complete information about your food item</p>
+             </div>
+             <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
+                <div className="col-span-5 p-4 md:p-16 ">
+                    <img src={foodItem.image} alt={foodItem.title}
+                    className="w-full h-full object-cover rounded-md"/>
+
+                </div>
+                <div className="col-span-7  text-white text-left">
+                   {/* Food details section  */}
+                   <div className="bg-white">
+                    <div className="p-5 md:p-10 ">
+                     <h2 className="text-xl md:text-2xl font-semibold text-gray-800 ">Food Name : {foodItem.title}</h2>
+                   </div>
+                   <div className="grid grid-cols-2 gap-4 px-10">
+
+                     <div className="flex flex-row gap-2">
+                       <Calendar  className="text-[#24ab63]"/>
+                       <p className="text-gray-600"> Category : {foodItem.Category}</p>
+                     </div>
+                     <div className="flex flex-row gap-2">
+                        <Package  className="text-[#24ab63]" />
+                       <p className="text-gray-600">Quantity : {foodItem.quantity}</p>
+                   </div>
+                   <div className="flex flex-row gap-2">
+                     <UserRoundPen  className="text-[#24ab63]" />
+                     <p className="text-gray-600">Added date : {foodItem.dateAdded}</p>
+                   </div>
+                   <div className="flex flex-row gap-2">
+                     <Clock  className="text-[#24ab63]" />
+                     <p className="text-gray-600">Added date : {foodItem.dateAdded}</p>
+                   </div>
+
+                    </div>
+
+                   <p className="text-xl md:text-xl text-gray-800 font-semibold p-10">Description : <span className="text-gray-500">{foodItem.description}</span></p>
+                   </div>
+                   
+                     
+
+
+                </div>
+
+
+             </div>
+
+            </div>
+
+             {/* Add a note  */}
+                   <div className="bg-slate-300-500 p-10 mx-auto my-10 ">
+                   <div className="bg-gray-200 p-10 ">
+                   <div className="flex flex-row gap-2 items-center p-5">
+                     <MessageCircleCode className="h-6 w-6 text-blue-500" />
+                    <h2 className="text-xl md:text-2xl font-semibold text-gray-800 ">Notes</h2>
+                   </div>
+                   <div className="w-2/4 bg-white p-5  ">
+                   <h2 className="text-sm md:text-xl font-semibold text-gray-800 p-3">Add a note</h2>
+                   <div className="bg-gray-100 p-5">
+                    <textarea 
+                    name="note" 
+                    className="w-full h-32 border border-gray-300 rounded-md p-3 text-gray-600"
+                    placeholder="Write your note here..."
+                    />
+
+                  <div className="flex flex-row justify-between items-center">
+                      <p className="text-gray-600 p-3 ">Posted Date: {today}</p>
+                      <button
+                      className="btn flex flex-row items-center gap-2 text-gray-500 border bg-white border-gray-300 rounded-3xl ">
+                        <Plus className="h-5 w-5"/> <span>Add a Note</span>
+                      </button>
+
+                  </div>
                     
-                   </Link>
-                    <div className="flex items-start gap-6">
-                        
-                        
-                        
-                        {/* User Info */}
-                        <div className="flex-1">
-                            <div className="flex items-center gap-4 mb-2">
-                                <h1 className="text-3xl font-bold text-gray-900">{name || 'Unknown User'}</h1>
-                                <button 
-                                    onClick={handleLike}
-                                    className={`flex items-center gap-1 px-3 py-1 rounded-full transition-colors ${
-                                        isLiked 
-                                            ? 'bg-red-100 text-red-600' 
-                                            : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-600'
-                                    }`}
-                                >
-                                    <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
-                                    {isLiked ? 'Liked' : 'Like'}
-                                </button>
-                            </div>
-                            
-                            <div className="flex items-center gap-4 text-gray-600 mb-3">
-                                <span className="flex items-center gap-1">
-                                    <User className="w-4 h-4" />
-                                    {age ? `${age} years old` : 'Age not specified'}
-                                </span>
-                                <span className="flex items-center gap-1">
-                                    <MapPin className="w-4 h-4" />
-                                    {location || 'Location not specified'}
-                                </span>
-                            </div>
-                            
-                            {/* Tags */}
-                            <div className="flex gap-2 mb-4">
-                                {title && (
-                                    <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full font-medium">
-                                        {title}
-                                    </span>
-                                )}
-                                {gender && (
-                                    <span className="px-3 py-1 bg-purple-500 text-white text-sm rounded-full font-medium capitalize">
-                                        {gender}
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            {/* Main Content */}
-            <div className="max-w-6xl mx-auto px-4 py-8">
-                {/* Post Data Grid - Row Layout */}
-                <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
-                    <h2 className="text-xl font-bold text-gray-900 mb-6">Room Details</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Rent */}
-                        <div className="bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
-                            <div className="flex items-center gap-2 mb-2">
-                                <DollarSign className="w-5 h-5 text-green-600" />
-                                <span className="text-sm font-medium text-green-700">Rent Amount</span>
-                            </div>
-                            <div className="text-2xl font-bold text-green-800">
-                                ${rent || 'N/A'}
-                            </div>
-                        </div>
+                   </div>
 
-                        {/* Room Type */}
-                        <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
-                            <div className="flex items-center gap-2 mb-2">
-                                <Home className="w-5 h-5 text-blue-600" />
-                                <span className="text-sm font-medium text-blue-700">Room Type</span>
-                            </div>
-                            <div className="text-lg font-bold text-blue-800">
-                                {roomType ? formatRoomType(roomType) : 'N/A'}
-                            </div>
-                        </div>
+                   </div>
+                   </div>
+                    
 
-                        {/* Availability */}
-                        <div className="bg-gradient-to-r from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
-                            <div className="flex items-center gap-2 mb-2">
-                                <Calendar className="w-5 h-5 text-purple-600" />
-                                <span className="text-sm font-medium text-purple-700">Availability</span>
-                            </div>
-                            <div className={`text-lg font-bold ${availability === 'available' ? 'text-green-600' : 'text-red-600'}`}>
-                                {availability ? formatAvailability(availability) : 'N/A'}
-                            </div>
-                        </div>
+                   </div>
 
-                        {/* Lease Duration */}
-                        <div className="bg-gradient-to-r from-orange-50 to-orange-100 p-4 rounded-lg border border-orange-200">
-                            <div className="flex items-center gap-2 mb-2">
-                                <Clock className="w-5 h-5 text-orange-600" />
-                                <span className="text-sm font-medium text-orange-700">Lease Duration</span>
-                            </div>
-                            <div className="text-lg font-bold text-orange-800">
-                                {leaseDuration || 'N/A'}
-                            </div>
-                             <div className="text-lg font-bold text-orange-800">
-                                {formatPetFriendly || 'N/A'}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Bottom Section */}
-                <div className="mt-12 bg-white rounded-xl shadow-sm p-6 text-center">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                        We think {name ? name.split(' ')[0] : 'this user'}'s room is fantastic! But in case you want to see more...
-                    </h3>
-                    <button className="mt-4 bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors">
-                        More Rooms for Rent
-                    </button>
-                </div>
-            </div>
+             
+          </Container>
+          
+            
         </div>
     );
 };

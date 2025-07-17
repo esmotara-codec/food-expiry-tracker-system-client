@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoutes";
 import MyListing from "../pages/MyListing";
 import AddFoodItems from "../pages/AddFoodItems";
 import DetailsPage from "../pages/DetailsPage/DetailsPage";
+import FridgePage from "../pages/Fridge/FridgePage";
 
 
 
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
             {
 				path: '/foodDetails/:id',
 				element:<PrivateRoute><DetailsPage /></PrivateRoute> ,
+			
+			},
+             {
+				path: 'fridge',
+				element:<PrivateRoute><FridgePage /></PrivateRoute> ,
+                loader:( )=> fetch('http://localhost:5000/get-foodItems'),
 			
 			},
 

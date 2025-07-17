@@ -11,11 +11,11 @@ const ExpiryItemsCard = ({ post }) => {
 		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 	};
 
-	const actualExpiryDate = useMemo(() => {
-		if (!dateAdded || !expiryDate) return 'N/A';
-		return getActualExpiryDate(dateAdded, expiryDate);
-	}, [dateAdded, expiryDate]);
-
+	const formattedExpiryData = new Date(expiryDate).toLocaleDateString('en-GB', {
+		day: 'numeric',
+		month: 'short',
+		year : 'numeric',
+	})
 	const daysLeft = useMemo(() => {
 		const expiry = new Date(getActualExpiryDate(dateAdded, expiryDate));
 		const today = new Date();
@@ -44,7 +44,7 @@ const ExpiryItemsCard = ({ post }) => {
 									Category : {formatName(Category)}
 								</p>
 								<p className='text-gray-700 text-sm md:text-[14px] font-semibold'>
-									Expiry Date : {actualExpiryDate}
+									Expiry Date : {formattedExpiryData}
 								</p>
 								<p className='text-red-500 text-sm font-semibold'>
 									{daysLeft > 0 ? `Expires in ${daysLeft} days` : 'Expired'}

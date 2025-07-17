@@ -153,10 +153,10 @@ const AddFoodItems = () => {
                                 <option value="1week">1 week</option>
                                 <option value="2week">2 week</option>
                                 <option value="1month">1 month</option>
-                                <option value="1-2months">1-2 months</option>
-                                <option value="3-6months">3-6 months</option>
-                                <option value="6-12months">6-12months</option>
-                                <option value="1-1.5years">1-1.5 years</option>
+                                <option value="2months">2 months</option>
+                                <option value="3months">3 months</option>
+                                <option value="6months">6 months</option>
+                                <option value="1years">1 years</option>
                                 <option value="2years">2 years</option>
                             </select>
                         </div>

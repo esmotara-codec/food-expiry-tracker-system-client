@@ -3,10 +3,10 @@ const expiryMap = {
      '1week': 7,
     '2week': 14,
     '1month': 30,
-    '1-2months': 60,
-    '3-6months': 120,
-    '6-12months': 240,
-    '1-1.5years': 365,
+    '2months': 60,
+    '3months': 90,
+    '6months': 180,
+    '1years': 365,
      '2years': 730,
 };
 

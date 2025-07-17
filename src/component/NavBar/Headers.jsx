@@ -22,7 +22,7 @@ const navigationData = [
     {
         id: 3,
         name: "Fridge",
-        path: "/c",
+        path: "/fridge",
     },
     {
         id: 4,

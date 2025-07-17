@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { use, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import Container from "../../layout/Container/Container";
 import { AlertCircle, Calendar, Clock, MessageCircleCode, Package, Plus, UserRoundPen } from "lucide-react";
@@ -10,11 +10,18 @@ const DetailsPage = () => {
     const { id } = useParams();
     const { user } = use(AuthContext);
     const [foodItem, setFoodItem] = useState();
-    const [timeLeft, setTimeLeft] = useState({});
     const [loading, setLoading] = useState(true);
+    const [timeLeft, setTimeLeft] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        expired: false,
+    });
     console.log(id);
 
     const today = new Date().toISOString().split('T')[0];
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/single-foodItems/${id}`)
@@ -28,7 +35,7 @@ const DetailsPage = () => {
                 console.log(error);
                 setLoading(false);
             });
-    }, [id]);
+    }, []);
 
     const formatQuantity = (str) => {
         if (!str) return '';
@@ -36,16 +43,30 @@ const DetailsPage = () => {
     };
 
     const formattedExpiryDate = getActualExpiryDate(foodItem?.dateAdded, foodItem?.expiryDate);
+    const daysLeft = useMemo(() => {
+        const expiry = new Date(getActualExpiryDate(foodItem?.dateAdded, foodItem?.expiryDate));
+        const today = new Date();
+        const diff = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24)); 
+
+        return diff;
+
+    }, []);
+
+    console.log(daysLeft);
 
     // Countdown timer
     useEffect(() => {
-        if (!foodItem?.expiryDate) return;
+        if (daysLeft <= 0) {
+            setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, expired: true });
+            return;
+        }
+
+        // Get future expiry timestamp from today + daysLeft
+        const expiryTimestamp = new Date().getTime() + daysLeft * 24 * 60 * 60 * 1000;
 
         const timer = setInterval(() => {
             const now = new Date().getTime();
-            const expiry = new Date(foodItem.expiryDate).getTime();
-            console.log('expiry difference ', now, expiry);
-            const distance = expiry - now;
+            const distance = expiryTimestamp - now;
 
             if (distance > 0) {
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -55,15 +76,15 @@ const DetailsPage = () => {
 
                 setTimeLeft({ days, hours, minutes, seconds, expired: false });
             } else {
-                setTimeLeft({ expired: true });
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, expired: true });
+                clearInterval(timer);
             }
         }, 1000);
 
         return () => clearInterval(timer);
     }, []);
 
-
-
+    //LOADING state
 
     if (loading) {
         return (
@@ -92,14 +113,15 @@ const DetailsPage = () => {
     return (
         <div className="bg-gray-200 text-gray-800 min-h-screen ">
             <Container>
-                <div className="text-left py-2 ">
+                <div className=" py-2 px-40
+                ">
                     {/* Heading Section  */}
-                    <div className="p-4 md:p-10 bg-white  ">
+                    <div className="p-4 md:p-10 bg-white ">
                         <h1 className="font-bold text-xl md:text-3xl">Details Page</h1>
                         <p className="text-gray-500">Complete information about your food item</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
-                        <div className="col-span-5 p-4 md:p-16 ">
+                        <div className="col-span-5 p-4 md:p-10">
                             <img src={foodItem.image} alt={foodItem.title}
                                 className="w-full h-full object-cover rounded-md" />
 

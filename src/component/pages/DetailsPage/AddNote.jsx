@@ -1,23 +1,87 @@
+import axios from 'axios';
 import { MessageCircleCode, Plus } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const AddNote = ({ today, user }) => {
+const AddNote = ({ today, user, foodItemId, hasUserAddedNote }) => {
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState('');
 
-    const handleNoteSubmit = (e) => {
+    useEffect(() => {
+        const fetchNotes = async () => {
+            try {
+                const response = await axios.get(`https://food-expiry-server-lime.vercel.app/get-notes/${foodItemId}`)
+
+                if (response && response.data) {
+                    setNotes(response.data);
+                } else {
+                    console.warn('Empty or invalid response:', response);
+                    setNotes([]);
+                }
+
+                } catch (error) {
+                    console.error('Error fetching notes:', error);
+
+                }
+                finally{
+                    setIsSubmitting(false);
+                }
+
+            }
+
+        if (foodItemId) {
+                fetchNotes();
+
+            }
+
+        }, [foodItemId]);
+
+    const handleNoteSubmit = async (e) => {
         if (!newNote) return;
         e.preventDefault();
+
+        if (!user) {
+            setError('Please login to add a note');
+            return;
+        }
+
+        if (!hasUserAddedNote) {
+            setError('You can not add note');
+            return;
+        }
+
+        setIsSubmitting(true);
+        setError('');
 
         const note = {
             text: newNote,
             email: user?.email,
             date: today,
-            author: user?.displayName
+            author: user?.displayName,
+            foodItemId: foodItemId,
+            createdAt: new Date().toISOString()
+
         };
 
-        setNotes([note, ...notes]);
-        setNewNote('');
+        try {
+            const response = await axios.post('https://food-expiry-server-lime.vercel.app/add-note', note,
+                {
+                    headers:
+                    {
+                        'Content-Type': 'application/json'
+
+                    }
+                });
+            setNotes([note, ...notes]);
+            setNewNote('');
+
+
+        } catch (error) {
+            console.error('Error adding note:', error);
+            setError('Error adding note');
+
+        }
 
     };
 

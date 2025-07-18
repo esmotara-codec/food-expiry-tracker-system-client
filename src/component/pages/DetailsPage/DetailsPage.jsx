@@ -11,6 +11,7 @@ const DetailsPage = () => {
     const { user } = use(AuthContext);
     const [foodItem, setFoodItem] = useState();
     const [loading, setLoading] = useState(true);
+    const [hasUserAddedNote, setHasUserAddedNote] = useState(false);
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -18,7 +19,7 @@ const DetailsPage = () => {
         seconds: 0,
         expired: false,
     });
-    console.log(id);
+   
 
     const today = new Date().toISOString().split('T')[0];
 
@@ -28,8 +29,14 @@ const DetailsPage = () => {
             .then((res) => res.json())
             .then((data) => {
                 setFoodItem(data);
-                setLoading(false)
-                console.log(data)
+                setLoading(false);
+                console.log(data);
+
+                  if (user && data.email === user.email) {
+                    setHasUserAddedNote(true);
+                }
+                
+                
             })
             .catch((error) => {
                 console.log(error);
@@ -50,9 +57,9 @@ const DetailsPage = () => {
 
         return diff;
 
-    }, []);
+    }, [foodItem]);
 
-    console.log(daysLeft);
+   
 
     // Countdown timer
     useEffect(() => {
@@ -82,7 +89,7 @@ const DetailsPage = () => {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [daysLeft]);
 
     //LOADING state
 
@@ -131,6 +138,7 @@ const DetailsPage = () => {
                             <div className="bg-white">
                                 <div className="p-5 md:p-10 ">
                                     <h2 className="text-xl md:text-2xl font-semibold text-gray-800 ">Food Name : {foodItem.title}</h2>
+                                    <p className=" text-gray-800 ">Added by: {foodItem.name}</p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 px-10">
 
@@ -198,7 +206,11 @@ const DetailsPage = () => {
                 {/* Add a note  */}
                 <AddNote
                     today={today}
-                    user={user} />
+                    user={user}
+                    foodItemId={id}
+                    hasUserAddedNote={hasUserAddedNote}
+                     />
+
 
 
 

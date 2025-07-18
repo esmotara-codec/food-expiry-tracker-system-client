@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             // if(currentUser?.email){
             //     const userData = {email: currentUser.email};
-            //     axios.post('http://localhost:5000/jwt', userData)
+            //     axios.post('https://food-expiry-server-lime.vercel.app/jwt', userData)
             //     .then(res =>{
             //         console.log(res.data)
             //     })

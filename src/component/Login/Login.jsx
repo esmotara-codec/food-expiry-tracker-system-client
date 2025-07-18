@@ -55,7 +55,7 @@ const Login = () => {
         }
 
         //save profile info in the db
-        fetch('http://localhost:5000/users', {
+        fetch('https://food-expiry-server-lime.vercel.app/users', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

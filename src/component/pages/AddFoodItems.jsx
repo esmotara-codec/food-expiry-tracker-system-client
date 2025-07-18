@@ -48,7 +48,7 @@ const AddFoodItems = () => {
 
 
         //send data to the db 
-        fetch('http://localhost:5000/create-foodItems', {
+        fetch('https://food-expiry-server-lime.vercel.app/create-foodItems', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

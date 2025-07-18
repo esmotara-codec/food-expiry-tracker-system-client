@@ -2,7 +2,6 @@ import { use, useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
-import { GoogleAuthProvider } from "firebase/auth";
 import { Eye, EyeOff } from "lucide-react";
 
 
@@ -51,7 +50,7 @@ function SignUp() {
         console.log(email, password, userProfile);
 
         //save profile info in the db
-        fetch('http://localhost:5000/users', {
+        fetch('https://food-expiry-server-lime.vercel.app/users', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

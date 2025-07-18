@@ -26,7 +26,7 @@ const MyListing = () => {
      
     try {
       const token = await getAuth().currentUser.getIdToken(true); 
-      const response = await axios.get(`http://localhost:5000/my-foodItems` , {
+      const response = await axios.get(`https://food-expiry-server-lime.vercel.app/my-foodItems` , {
         headers : {
           Authorization: `Bearer ${token}`
         }
@@ -42,7 +42,7 @@ const MyListing = () => {
   const handleEditPost = (updatedData) => {
    
     
-    fetch(`http://localhost:5000/update-foodItems/${updatedData._id}`, {
+    fetch(`https://food-expiry-server-lime.vercel.app/update-foodItems/${updatedData._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const MyListing = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // Start Deleting by food ApI
-        fetch(`http://localhost:5000/delete-foodItems/${_id}`, {
+        fetch(`https://food-expiry-server-lime.vercel.app/delete-foodItems/${_id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())

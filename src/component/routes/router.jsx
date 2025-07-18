@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch('http://localhost:5000/get-foodItems'),
+                loader: () => fetch('https://food-expiry-server-lime.vercel.app/get-foodItems'),
                 element: <Home />
             },
             {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
              {
 				path: 'fridge',
 				element:<PrivateRoute><FridgePage /></PrivateRoute> ,
-                loader:( )=> fetch('http://localhost:5000/get-foodItems'),
+                loader:( )=> fetch('https://food-expiry-server-lime.vercel.app/get-foodItems'),
 			
 			},
 

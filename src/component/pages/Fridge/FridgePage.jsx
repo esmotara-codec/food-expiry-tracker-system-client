@@ -12,7 +12,7 @@ const FridgePage = () => {
   useEffect(() => {
     const fetchFoodItems = async () => {
       try {
-        const response = await fetch('http://localhost:5000/get-foodItems');
+        const response = await fetch('https://food-expiry-server-lime.vercel.app/get-foodItems');
         if (!response.ok) {
           throw new Error('Failed to fetch food items');
         }

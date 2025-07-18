@@ -24,7 +24,7 @@ const DetailsPage = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/single-foodItems/${id}`)
+        fetch(`https://food-expiry-server-lime.vercel.app/single-foodItems/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setFoodItem(data);

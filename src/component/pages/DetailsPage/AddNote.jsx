@@ -156,10 +156,11 @@ const AddNote = ({ today, user, foodItemId, hasUserAddedNote }) => {
                                     <div className="space-y-4">
                                         {notes.map((note, index) => (
                                             <div key={index} className="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                                <p className="text-gray-800 mb-2">{note.text}</p>
-                                                <div className="flex flex-col md:flex-row gap-3 items-center">
-                                                    <span className='text-sm text-gary-500'>Posted by: {note.author}</span>
-                                                    <span className='text-sm text-gary-500'>Posted date: {note.date}</span>
+                                                 <p className='text-sm md:text-[18px] font-semibold text-gary-900'>{note.author}</p>
+                                                <p className="text-gray-800 mb-2 p-2">{note.text}</p>
+                                                <div className="flex items-center">
+                                                   
+                                                    <span className='text-sm text-red-700'>Posted date: {note.date}</span>
                                                 </div>
                                             </div>
                                         ))}

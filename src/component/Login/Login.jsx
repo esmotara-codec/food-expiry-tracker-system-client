@@ -132,7 +132,7 @@ const Login = () => {
             />
           </div>
           <div className="text-center">
-            <button type="submit" className="btn w-full px-6 py-2 text-white bg-[#24ab63] rounded-lg font-semibold transition duration-300 hover:bg-blue-800">
+            <button type="submit" className="btn w-full px-6 py-2 text-white bg-[#24ab63] rounded-lg font-semibold transition duration-300 hover:bg-green-800">
                Sign in
             </button>
           </div>
@@ -142,7 +142,7 @@ const Login = () => {
         <div className="mt-6 text-center">
           <button
             onClick={handleGoogleSignIn}
-            className="btn  w-full px-4 py-2 bg-black  text-white  hover:bg-green-900 border border-gray-400 rounded-md  transition duration-300"
+            className="btn  w-full px-4 py-2 bg-black  text-white  border border-gray-400 rounded-md  transition duration-300"
           >
             Sign in with Google
           </button>

@@ -2,6 +2,8 @@ import { useLoaderData } from 'react-router';
 import Banner from './Banner';
 import Footer from './Footer';
 import ExpiryItems from '../NearlyExpiryItems/ExpiryItems';
+import FeatureSection from './Featured/FeatureSection';
+import WhyChooseUs from './WhyChooseUs';
 
 const Home = () => {
     const data = useLoaderData();
@@ -10,6 +12,8 @@ const Home = () => {
         <div>
             <Banner/>
            <ExpiryItems foodItemsdata ={data}/>
+           <FeatureSection/>
+           <WhyChooseUs/>
             <Footer/>
             
             

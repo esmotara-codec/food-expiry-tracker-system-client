@@ -9,7 +9,7 @@ const bannerData = [
             "Never let food go to waste again. Monitor expiry dates, get timely reminders, and keep your kitchen organized with our smart food expiry tracking system.",
         buttonText: "Start Tracking Now",
         image:
-            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1752469006/hVHg-GW85N0jpTh9MzcZoMnQvxA_ihu1lh.avif",
+            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1748842195/header_for_website_21af4af7-f5b7-4f06-b26b-45174c771c4f_1800x_i2zhjd.webp",
         link: "/track-food"
     },
     {
@@ -19,7 +19,7 @@ const bannerData = [
             "Scan, store, and get notified before your groceries expire. Save money, reduce waste, and eat fresh with confidence.",
         buttonText: "Manage Your Pantry",
         image:
-            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1752469059/istock-637927082_vtnw1b.avif",
+            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1752906154/healthy-food-banner-on-black-3154876_jfgqg0.jpg",
         link: "/manage-pantry"
     },
     {
@@ -86,13 +86,13 @@ const Banner = () => {
                         style={{ backgroundImage: `url(${banner.image})` }}
                     >
 
-                        <div className="absolute inset-0 bg-black bg-opacity-110"></div>
+                        <div className="absolute inset-0 bg-black/70"></div>
                         <div className=" z-10 p-8 rounded-lg max-w-4xl mx-4">
                             <h1 className="text-2xl md:text-5xl font-bold mb-4 text-[#24ab63]">{banner.title}</h1>
                             <p className="text-sm md:text-xl mb-8 max-w-3xl text-[#24ab63]">{banner.subtitle}</p>
                             <button
                                 onClick={() => handleButtonClick(banner.link)}
-                                className="bg-[#24ab63] hover:bg-[#5cab24fc] px-3 md:px-8 py-3 rounded-full text-white font-medium transition-colors text-sm md:text-lg"
+                                className="bg-[#24ab63] hover:bg-green-800 px-3 md:px-8 py-3 rounded-full text-white font-medium transition-colors text-sm md:text-lg"
                             >
                                 {banner.buttonText}
                             </button>

@@ -46,12 +46,12 @@ const router = createBrowserRouter([
           
             {
 				path: '/foodDetails/:id',
-				element:<PrivateRoute><DetailsPage /></PrivateRoute> ,
+				element:<DetailsPage /> ,
 			
 			},
              {
 				path: 'fridge',
-				element:<PrivateRoute><FridgePage /></PrivateRoute> ,
+				element:<FridgePage /> ,
                 loader:( )=> fetch('https://food-expiry-server-lime.vercel.app/get-foodItems'),
 			
 			},

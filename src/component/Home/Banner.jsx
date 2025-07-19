@@ -10,7 +10,7 @@ const bannerData = [
         buttonText: "Start Tracking Now",
         image:
             "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1748842195/header_for_website_21af4af7-f5b7-4f06-b26b-45174c771c4f_1800x_i2zhjd.webp",
-        link: "/track-food"
+        link: "/login"
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const bannerData = [
         buttonText: "Manage Your Pantry",
         image:
             "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1752906154/healthy-food-banner-on-black-3154876_jfgqg0.jpg",
-        link: "/manage-pantry"
+        link: "/login"
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ const bannerData = [
         buttonText: "Get Started Free",
         image:
             "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1750143238/healthy-groceries-bag-66eaef810acf6_qqm2tx.jpg",
-        link: "/signup"
+        link: "/login"
     }
 ];
 

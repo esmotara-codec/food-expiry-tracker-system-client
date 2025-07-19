@@ -74,10 +74,12 @@ const Headers = () => {
                         {/* Logo */}
 
                         <div className='flex items-center justify-center gap-2 md:gap-3 '>
-                            <img src={logo}
+                             <img src={logo}
                                 alt="FoodExp-Logo"
                                 className='w-[30px] md:w-[70px]' />
+                           <Link to="/">
                             <h3 className='font-bold text-[16px] md:text-2xl text-black'>FoodExp.</h3>
+                           </Link>
                         </div>
                     </div>
                     {/* NavLINK */}

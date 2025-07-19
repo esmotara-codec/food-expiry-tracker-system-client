@@ -42,7 +42,7 @@ import { Bell, Calendar, MessageCircleCode, ShieldCheck, TrendingUp, Users } fro
 const WhyChooseUs = () => {
     return (
         <div>
-             <section className="bg-gradient-to-r from-gray-50 to-blue-50 py-20">
+             <div className="bg-gradient-to-r from-gray-50 to-blue-50 py-20">
                     <div className="container mx-auto px-6">
                       <div className="mb-20">
                         <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
@@ -65,7 +65,7 @@ const WhyChooseUs = () => {
                         </div>
                       </div>
                     </div>
-                  </section>
+                  </div>
             
         </div>
     );

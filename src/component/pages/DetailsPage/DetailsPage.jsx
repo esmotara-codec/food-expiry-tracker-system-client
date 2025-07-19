@@ -120,27 +120,26 @@ const DetailsPage = () => {
     return (
         <div className="bg-gray-200 text-gray-800 min-h-screen ">
             <Container>
-                <div className=" py-2 px-40
-                ">
+                <div className=" py-2 px-2 md:px-40">
                     {/* Heading Section  */}
-                    <div className="p-4 md:p-10 bg-white ">
+                    <div className="md:p-10 bg-white ">
                         <h1 className="font-bold text-xl md:text-3xl">Details Page</h1>
                         <p className="text-gray-500">Complete information about your food item</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
-                        <div className="col-span-5 p-4 md:p-10">
+                        <div className=" md:col-span-5 p-4 md:p-10">
                             <img src={foodItem.image} alt={foodItem.title}
                                 className="w-full h-full object-cover rounded-md" />
 
                         </div>
-                        <div className="col-span-7  text-white text-left">
+                        <div className="col-span-7 text-white text-left">
                             {/* Food details section  */}
                             <div className="bg-white">
-                                <div className="p-5 md:p-10 ">
+                                <div className="p-1 md:p-10 ">
                                     <h2 className="text-xl md:text-2xl font-semibold text-gray-800 ">Food Name : {foodItem.title}</h2>
                                     <p className=" text-gray-800 ">Added by: {foodItem.name}</p>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4 px-10">
+                                <div className="grid grid-cols-2 gap-4 px-1 md:px-10">
 
                                     <div className="flex flex-row gap-2">
                                         <Calendar className="text-[#24ab63]" />
@@ -161,11 +160,11 @@ const DetailsPage = () => {
 
                                 </div>
 
-                                <p className="text-xl md:text-xl text-gray-800 font-semibold p-10">Description : <span className="text-gray-500">{foodItem.description}</span></p>
+                                <p className="text-[18px] md:text-xl text-gray-800 font-semibold p-3 md:p-10">Description : <span className="text-sm text-gray-500">{foodItem.description}</span></p>
 
                                 {/* Expiration Countdown */}
-                                <div className="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-xl p-6">
-                                    <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                                <div className="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-xl p-2 md:p-6">
+                                    <h3 className="text-sm md:text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
                                         <Clock className="h-5 w-5 text-orange-600" />
                                         Expiration Countdown
                                     </h3>
@@ -176,22 +175,22 @@ const DetailsPage = () => {
                                             <p className="text-red-600 font-bold text-xl">EXPIRED</p>
                                         </div>
                                     ) : (
-                                        <div className="grid grid-cols-4 gap-4 text-center">
+                                        <div className="grid grid-cols-4 gap-4 ">
                                             <div className="bg-white rounded-lg p-3 border border-orange-200">
-                                                <div className="text-2xl font-bold text-orange-600">{timeLeft.days || 0}</div>
-                                                <div className="text-sm text-gray-600">Days</div>
+                                                <div className="text-sm md:text-2xl font-bold text-orange-600">{timeLeft.days || 0}</div>
+                                                <div className=" text-[10px] md:text-sm text-gray-600">Days</div>
                                             </div>
                                             <div className="bg-white rounded-lg p-3 border border-orange-200">
-                                                <div className="text-2xl font-bold text-orange-600">{timeLeft.hours || 0}</div>
-                                                <div className="text-sm text-gray-600">Hours</div>
+                                                <div className="text-sm md:text-2xl font-bold text-orange-600">{timeLeft.hours || 0}</div>
+                                                <div className="text-[10px] md:text-sm text-gray-600">Hours</div>
                                             </div>
                                             <div className="bg-white rounded-lg p-3 border border-orange-200">
-                                                <div className="text-2xl font-bold text-orange-600">{timeLeft.minutes || 0}</div>
-                                                <div className="text-sm text-gray-600">Minutes</div>
+                                                <div className="text-sm md:text-2xl font-bold text-orange-600">{timeLeft.minutes || 0}</div>
+                                                <div className="text-[10px] md:text-sm text-gray-600">Minutes</div>
                                             </div>
-                                            <div className="bg-white rounded-lg p-3 border border-orange-200">
-                                                <div className="text-2xl font-bold text-orange-600">{timeLeft.seconds || 0}</div>
-                                                <div className="text-sm text-gray-600">Seconds</div>
+                                            <div className="bg-white  rounded-lg p-3 border border-orange-200">
+                                                <div className="text-sm md:text-2xl font-bold text-orange-600">{timeLeft.seconds || 0}</div>
+                                                <div className="text-[10px] md:text-sm text-gray-600">Seconds</div>
                                             </div>
                                         </div>
                                     )}

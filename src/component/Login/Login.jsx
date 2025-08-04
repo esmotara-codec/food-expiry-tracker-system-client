@@ -64,8 +64,8 @@ const Login = () => {
         })
           .then(res => res.json())
           .then(data => {
-            if (data.insertedId) {
-              console.log("After google data added to db");
+            if (data.insertedId || data.message === "User Already exists" ) {
+              console.log(data.insertedId ? "New user added to db" : "Existing user logged in");
               Swal.fire({
                 position: "center",
                 icon: "success",

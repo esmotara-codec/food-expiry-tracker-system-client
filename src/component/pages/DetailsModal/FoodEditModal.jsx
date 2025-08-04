@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const FoodEditModal = ({ food, onClose , onUpdate }) => {
    const [formData, setFormData] = useState(
@@ -13,10 +14,13 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async(e) => {
     console.log("Update button clicked");
+    e.preventDefault();
    
-    onUpdate(formData); 
+   await  onUpdate(formData); 
+    onClose();
+   
     
   };
   if (!food) return null;
@@ -26,7 +30,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
       <div className="bg-white text-gray-700 rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto relative shadow-2xl transform transition-all duration-300 scale-100">
         {/* Header */}
         <div className="sticky top-0 bg-white border-b border-gray-200 p-6 rounded-t-lg">
-          <h2 className="text-xl font-bold">Hey there {food.name}, Update your food item</h2>
+          <h2 className="text-xl font-bold">Hey there, Update your food item</h2>
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"

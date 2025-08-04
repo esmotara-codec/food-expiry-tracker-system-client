@@ -10,7 +10,7 @@ const ExpiryItems = ({foodItemsdata }) => {
 	const [display, setDisplay] = useState([]);
 	const [viewAll, setViewAll] = useState(false);
 
-	console.log(foodItemsdata);
+	
 
 	useEffect(() => {
 
@@ -35,10 +35,10 @@ const ExpiryItems = ({foodItemsdata }) => {
 		<div className=' bg-white '>
 			<Container>
 				<div className='container mx-auto md:p-10 py-3 '>
-					<div className='text-center items-center px-10 md:px-24 text-black mb-4 '>
+					<div className='text-center items-center px-2 md:px-24 text-black mb-4 mt-3 '>
 						<h1 className='font-bold text-2xl  md:text-3xl'>Nearly Expiry Food Items
 						</h1>
-						<p className='text-gray-500 text-[9px] md:text-[16px] p-4'>
+						<p className='text-gray-500 text-[14px] md:text-[16px] p-4'>
 							Almost Expired – Take Action Now!
 						</p>
 					</div>

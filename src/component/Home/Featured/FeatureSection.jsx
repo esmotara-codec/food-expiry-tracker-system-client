@@ -46,7 +46,7 @@ const FeatureSection = () => {
               <div className="text-blue-600 flex justify-center mb-3">
                 {stat.icon}
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
+              <div className="text-xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
               <div className="text-gray-600 font-medium">{stat.label}</div>
             </div>
           ))}

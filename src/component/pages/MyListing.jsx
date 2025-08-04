@@ -22,6 +22,11 @@ const MyListing = () => {
     }
   }, [user]);
 
+
+  if(loading){
+    return <Loading/>
+  }
+
  const fetchMyfoodItems = async () => {
      
     try {
@@ -61,6 +66,8 @@ const MyListing = () => {
           title: "food Updated Successfully",
           showConfirmButton: true,
           confirmButtonText: "OK",
+           
+
         });
         
       }
@@ -76,7 +83,6 @@ const MyListing = () => {
     })
 
   }
-
 
   const handleDelete = (_id) => {
     console.log(_id);

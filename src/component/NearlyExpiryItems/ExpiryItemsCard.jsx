@@ -27,12 +27,12 @@ const ExpiryItemsCard = ({ post }) => {
 		<Container>
 			<div className='bg-white border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 '>
 				<div className='p-5'>
-					<div className='flex flex-row gap-5'>
+					<div className='flex flex-col md:flex-row  gap-5'>
 						<div>
 							<img
 								src={image}
 								alt='Food-image'
-								className='w-28 h-40 md:h-32 object-cover rounded-2xl'
+								className='w-28 h-28 md:h-32 object-cover rounded-2xl'
 							/>
 						</div>
 						<div className='flex flex-col flex-grow gap-4'>

@@ -64,7 +64,7 @@ const Login = () => {
         })
           .then(res => res.json())
           .then(data => {
-            if (data.insertedId || data.message === "User Already exists" ) {
+            if (data.insertedId ) {
               console.log(data.insertedId ? "New user added to db" : "Existing user logged in");
               Swal.fire({
                 position: "center",

@@ -40,7 +40,7 @@ const Login = () => {
 
   };
 
-  // Handle Google Sign In
+  // Handle Google Sign In0/
   const handleGoogleSignIn = () => {
     signInWithGoogle(provider)
       .then(result => {

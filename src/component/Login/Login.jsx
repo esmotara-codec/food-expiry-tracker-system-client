@@ -64,8 +64,7 @@ const Login = () => {
         })
           .then(res => res.json())
           .then(data => {
-            if (data.insertedId ) {
-              console.log(data.insertedId ? "New user added to db" : "Existing user logged in");
+           console.log(data.insertedId ? "New user added to db" : "Existing user logged in");
               Swal.fire({
                 position: "center",
                 icon: "success",
@@ -74,7 +73,6 @@ const Login = () => {
                 timer: 1500
               });
               navigate(location?.state || "/");
-            }
           })
       })
       .catch(error => {

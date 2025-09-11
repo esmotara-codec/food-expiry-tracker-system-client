@@ -7,7 +7,7 @@ import WhyChooseUs from './WhyChooseUs';
 
 const Home = () => {
     const data = useLoaderData();
-    console.log(data);
+    // console.log(data);
     return (
         <div>
             <Banner/>

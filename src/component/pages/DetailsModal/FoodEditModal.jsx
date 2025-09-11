@@ -70,7 +70,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                         <div className="space-y-3">
                             <label className="label text-gray-700">Category *</label>
                             <input type="text"
-                                name='Category'
+                                name='category'
                                 defaultValue={food.Category}
                                  onChange={handleChange}
                                 className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
@@ -105,8 +105,9 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                         <div className="space-y-3">
                             <label className="label text-gray-700"> Expiry Date *</label>
                             <select
-                                name="expiryDate"
+                                name="expireDate"
                                 defaultValue={food.expiryDate}
+                                onChange={handleChange}
                                 className="select w-full px-4 py-2 border border-gray-400 bg-white text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30">
                                 <option value="">Select Expiry Date</option>
                                 <option value="1-2months">1-2 months</option>
@@ -129,6 +130,7 @@ const FoodEditModal = ({ food, onClose , onUpdate }) => {
                                     defaultValue={food.image}
                                     placeholder="Enter image URL"
                                     required
+                                    onChange={handleChange}
                                     className="input w-full px-4 py-2 border border-gray-400 bg-white text-black  rounded-md focus:outline-none focus:ring-2 focus:ring-[#24ab63]/30"
                                    
                                 />

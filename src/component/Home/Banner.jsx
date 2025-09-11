@@ -9,7 +9,7 @@ const bannerData = [
             "Never let food go to waste again. Monitor expiry dates, get timely reminders, and keep your kitchen organized with our smart food expiry tracking system.",
         buttonText: "Start Tracking Now",
         image:
-            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1748842195/header_for_website_21af4af7-f5b7-4f06-b26b-45174c771c4f_1800x_i2zhjd.webp",
+            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1757481717/istockphoto-1942058595-612x612_rqcjoe.jpg",
         link: "/login"
     },
     {
@@ -19,7 +19,7 @@ const bannerData = [
             "Scan, store, and get notified before your groceries expire. Save money, reduce waste, and eat fresh with confidence.",
         buttonText: "Manage Your Pantry",
         image:
-            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1752906154/healthy-food-banner-on-black-3154876_jfgqg0.jpg",
+            "https://res.cloudinary.com/dyuxx8ecm/image/upload/v1757481717/Healthy_food_tr0x1y.jpg",
         link: "/login"
     },
     {

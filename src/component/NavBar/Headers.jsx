@@ -89,8 +89,7 @@ const Headers = () => {
                     </ul>
                     {/*Conditional  Login button */}
                     <div className='px-2 py-5 items-center'>
-                        {
-                            !user ? (
+                        { !user ? (
                                 <div className='flex gap-2 '>
                                     <Link to="/login">
                                         <button

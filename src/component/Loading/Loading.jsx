@@ -1,7 +1,7 @@
 const Loading = () => {
     
     return (
-       <div className='fixed inset-0 items-center flex justify-center bg-white z-50 '> 
+       <div className='fixed inset-0 items-center flex justify-center bg-white z-100 '> 
 		<span className="loading loading-spinner text-success w-36 h-36"></span>
 	</div>
        

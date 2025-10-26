@@ -72,9 +72,9 @@ const Headers = () => {
             {links}
           </ul>
           {/*Conditional  Login button */}
-          <div className="px-2 py-5 items-center">
+          <div className="hidden lg:flex px-2 py-5 items-center">
             {!user ? (
-              <div className="hidden md:flex gap-2 ">
+              <div className="hidden lg:flex gap-2 ">
                 <Link to="/login">
                   <button className="btn border border-none bg-[#24ab63] text-white text-sm md:text-xl lg:text-sm py-2 lg:py-2 px-3 md:px-5 rounded-lg ">
                     Login
@@ -205,11 +205,7 @@ const Headers = () => {
                           Login
                         </button>
                       </Link>
-                      <Link to="/sign-up ">
-                        <button className="w-full btn border border-none bg-[#24ab63] text-white text-sm py-2 px-3 rounded-lg">
-                          Sign Up
-                        </button>
-                      </Link>
+                      
                     </div>
                   ) : (
                     <div className="p-4 py-2 mt-4 border-t border-gray-200">

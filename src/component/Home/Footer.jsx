@@ -9,20 +9,20 @@ const Footer = () => {
              <footer className="bg-gray-50 border-t border-gray-200">
         <Container>
           {/* Main Footer Content */}
-          <div className="py-8 md:py-12 px-5 md:px-16">
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
+          <div className="py-8 md:py-12 ">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6">
               {/* Company Info Section */}
-              <div className="md:col-span-3">
+              <div className="md:col-span-2">
                 <div className="flex flex-col items-center md:items-start">
-                  <div className="text-center md:text-left">
+                  <div className="text-left">
                     <Link to="/">
                       <img
                         src={logo}
                         alt="Roomate-logo"
-                        className="w-full md:w-[200px] lg:w-[200px] mx-auto md:mx-0 md:ml-[-10px] pb-2"
+                        className="w-full md:w-[200px] lg:w-[200px] mx-auto md:mx-0 md:ml-[-10px] "
                       />
                     </Link>
-                    <p className="text-sm md:text-lg text-gray-600">
+                    <p className="text-sm md:text-[14px] text-center text-gray-600">
                       Your best Food Expiry System
                     </p>
                   </div>
@@ -30,11 +30,11 @@ const Footer = () => {
               </div>
 
               {/* Information Section */}
-              <div className="md:col-span-2">
-                <h4 className="text-lg md:text-xl text-gray-800 mb-4 text-center md:text-left">
+              <div className="md:col-span-3">
+                <h4 className="text-lg md:text-xl text-gray-800 font-semibold mb-4 text-left">
                   Information
                 </h4>
-                <ul className="space-y-3 text-sm md:text-md text-gray-600 text-center md:text-left">
+                <ul className="space-y-3 text-sm md:text-md text-gray-600 text-left">
                   <li>
                     <Link
                       to="/"
@@ -64,10 +64,10 @@ const Footer = () => {
 
               {/* Service Section */}
               <div className="md:col-span-2">
-                <h4 className="text-lg md:text-xl text-gray-800 mb-4 text-center md:text-left">
+                <h4 className="text-lg md:text-xl text-gray-800 font-semibold mb-4 text-left">
                   Service
                 </h4>
-                <ul className="space-y-3 text-sm md:text-md text-gray-600 text-center md:text-left">
+                <ul className="space-y-3 text-sm md:text-md text-gray-600 ">
                   <li>
                     <a
                       href="/"
@@ -89,7 +89,7 @@ const Footer = () => {
 
               {/* Newsletter Section */}
               <div className="md:col-span-5">
-                <h4 className="text-lg md:text-xl text-gray-800 mb-4 text-center md:text-left">
+                <h4 className="text-lg md:text-xl text-gray-800 font-semibold mb-4 ">
                   Subscribe Newsletter
                 </h4>
                 <div className="flex flex-col sm:flex-row w-full max-w-sm mx-auto md:mx-0 items-center gap-2">
